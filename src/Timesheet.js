@@ -56,7 +56,6 @@ class Timesheet extends React.Component {
 		this.getTimesheet = this.getTimesheet.bind(this);
 		this.onCurrentClick = this.onCurrentClick.bind(this);
 		this.onLogOutClick = this.onLogOutClick.bind(this);
-		this.onLoginClick = this.onLoginClick.bind(this);
 		this.handleKeyPress = this.handleKeyPress.bind(this);
 		this.sessionChk = this.sessionChk.bind(this);
 		this.redirectToMain = this.redirectToMain.bind(this);
@@ -252,7 +251,7 @@ class Timesheet extends React.Component {
 		this.setState({ pw: inputValue });
 	}
 
-	async onLoginClick() {
+	onLoginClick = () => {
 		this.setState({ loading: true });
 		if (!this.state.id) {
 			this.setState({
@@ -264,37 +263,21 @@ class Timesheet extends React.Component {
 				loading: false
 			});
 		}
-		await axios.get("/timesheet/user/login", {
-				params: {
-					id: this.state.id,
-					pw: this.state.pw
-				}
-			}).then(response => {
-				if (response && response.data.status !== "fail" && response.data.token !== null) {
-					const result = response.data;
-					this.setState(
-						{
-							userInfo: {
-								token: result.token,
-								department: result.department,
-								firstName: result.firstName,
-								lastName: result.lastName,
-								origin: result.origin,
-								accessLevel: result.accessLevel,
-								id: "",
-								pw: ""
-							}
-						},
-						() => {
-							this.getTimesheet();
-							this.getRecords();
-							this.setState({ loading: false });
-						}
-					);
-				} else {
-					this.setState({ loading: false }, this.openNotificationWithIcon("error", response.data.message));
-				}
-			});
+		this.setState({
+			userInfo: {
+				token: "ACKJ@I#JRI",
+				department: "test",
+				firstName: "Test",
+				lastName: "Account",
+				origin: "master",
+				accessLevel: "1",
+				id: "test",
+			}
+		}, () => {
+			this.getTimesheet();
+			this.getRecords();
+			this.setState({ loading: false });
+		})
 	}
 
 	async onLogOutClick() {
