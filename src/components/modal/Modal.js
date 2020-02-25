@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-import axios from "axios";
 import moment from "moment";
 import { Form, Button } from "semantic-ui-react";
 import { Modal } from "semantic-ui-react";
 import { notification } from "antd";
 import BasicButton from "../buttons/Button";
 import DateAndTimes from "../buttons/DateAndTimes";
-import log from "loglevel";
 
 class ModalCreateSheet extends Component {
   constructor(props) {
@@ -27,7 +25,8 @@ class ModalCreateSheet extends Component {
       endTime: props.endTime,
       requestSatus: "",
       getTimesheet: props.getTimesheet,
-      userInfo: props.userInfo
+      userInfo: props.userInfo,
+      updateShift: props.updateShift
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.redirectToMain = this.redirectToMain.bind(this);
@@ -51,55 +50,12 @@ class ModalCreateSheet extends Component {
     }, 5000);
   }
 
-  async handleSubmit() {
+  handleSubmit = () => {
     let dateNtimes = this.timeElement.current.getValue();
     if (!dateNtimes) {
       return false;
     }
-
-    await axios
-      .get("/timesheet/data/selectOneRecord", {
-        params: {
-          date: dateNtimes.date,
-          id: this.state.userInfo.id,
-          token: this.state.userInfo.token
-        }
-      }).then(async result => {
-        if (result.data[0] && result.data[0].COUNT === 0) {
-          await axios.get("/timesheet/data/insert", {
-            params: {
-              id: this.state.userInfo.id,
-              date: dateNtimes.date,
-              startTime: dateNtimes.startTime,
-              endTime: dateNtimes.endTime,
-              breakTime1: dateNtimes.breakTime1,
-              breakTime2: dateNtimes.breakTime2,
-              breakTime3: dateNtimes.breakTime3,
-              breakTime4: dateNtimes.breakTime4
-            }
-          }).then(result => {
-            if (result && result.status === 200) {
-              this.close();
-              this.state.getTimesheet();
-            } else {
-              log.error("Fail to insert data", result);
-              this.openNotificationWithIcon("error", "Fail to insert data");
-            }
-          }).catch(err => {
-            log.error(err);
-            this.redirectToMain();
-          });
-        } else if (result.data.status === 'timeout') {
-          this.openNotificationWithIcon("error", result.data.message);
-          this.redirectToMain();
-        } else {
-          this.openNotificationWithIcon("error", "Selected date timesheet is already exist !");
-        }
-      })
-      .catch(err => {
-        log.error(err);
-        this.redirectToMain();
-      });
+    this.state.updateShift(dateNtimes);
   }
 
   render() {

@@ -52,12 +52,15 @@ class Timesheet extends React.Component {
 			handleShowClick: () => this.setState({ visible: true }),
 			handleSidebarHide: () => this.setState({ visible: false })
 		};
+		this.data = {
+			week1: [],
+			week2: []
+		}
 		this.onRecordClick = this.onRecordClick.bind(this);
 		this.getTimesheet = this.getTimesheet.bind(this);
 		this.onCurrentClick = this.onCurrentClick.bind(this);
 		this.onLogOutClick = this.onLogOutClick.bind(this);
 		this.handleKeyPress = this.handleKeyPress.bind(this);
-		this.sessionChk = this.sessionChk.bind(this);
 		this.redirectToMain = this.redirectToMain.bind(this);
 		this.setId = this.setId.bind(this);
 		this.setPassword = this.setPassword.bind(this);
@@ -208,7 +211,6 @@ class Timesheet extends React.Component {
 				data: { week1: [], week2: [] }
 			});
 		}
-		this.sessionChk();
 	}
 
 	openNotificationWithIcon(type, text) {
@@ -312,17 +314,10 @@ class Timesheet extends React.Component {
 			});
 	}
 
-	async sessionChk() {
-		await axios.get("/timesheet/user/sessionChk").then(response => {
-			if (response.data.status !== "timeout") {
-				this.setState({
-					userInfo: response.data
-				});
-				this.getTimesheet();
-				this.getRecords();
-				this.setState({ loading: false });
-			}
-		});
+	updateShift = (data) => {
+		console.log(data);
+		this.data.week1.push(data);
+		console.log(this.data)
 	}
 
 	render() {
@@ -391,7 +386,7 @@ class Timesheet extends React.Component {
 					</h3>
 					<WeeklyShiftList data={this.state.data.week2} historyMode={this.historyMode} getTimesheet={this.getTimesheet} userInfo={this.state.userInfo} />
 					<div style={{ marginBottom: "50px" }}>
-						<Modal getTimesheet={this.getTimesheet} userInfo={this.state.userInfo} historyMode={this.historyMode} />
+						<Modal getTimesheet={this.getTimesheet} userInfo={this.state.userInfo} historyMode={this.historyMode} updateShift={this.updateShift}/>
 						<Form
 							ref={el => (this.componentRef = el)}
 							payrollWeeks={this.state.payrollWeeks}
