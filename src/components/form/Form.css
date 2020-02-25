@@ -1,0 +1,99 @@
+.printable { display: none; }
+
+@page {
+  size: A4;
+  margin-top: 20px;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-bottom: auto;
+}
+
+@media print {
+  .non-printable { display: none; }
+  .printable { display: block; }
+}
+
+.koiLogoPDF {
+  width: 220px;
+  height: 100px;
+  margin-right: 350px;
+  margin-top: 10px;
+}
+
+.koiDetails {
+  height: 25px;
+}
+
+.contents {
+  font-size: 17px;
+  color: black;
+}
+
+.pdf_font_large {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.pdf_font_mid {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.pdf_footer {
+  margin-top: 1%;
+}
+
+.pdf_footer > p {
+  padding: 5px;
+}
+
+.pdf_timetable {
+  padding: 10px;
+}
+
+.pdf_total {
+  padding: 10px;
+  font-weight: bold;
+}
+
+.ui.input > input {
+  text-align: center;
+  color: #000000;
+}
+
+hr {
+  margin-bottom: 40px;
+}
+
+.timesheet {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.timesheet thead > tr > td {
+  font-size: 18px;
+  font-weight: bold;
+  border-style: 1px solid black;
+  padding: 10px;
+}
+
+.timesheet td {
+  width: auto;
+  text-align: center;
+  font-size: 16px;
+  color: black;
+  border: 1px solid black;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.sigContainer {
+  border-style: ridge;
+}
+
+.signatureImg {
+  height: 100px;
+}
