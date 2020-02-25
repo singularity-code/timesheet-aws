@@ -28,12 +28,12 @@ class ShiftCalculator extends React.Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		if (prevProps !== this.props) {
-			let recalcuratedTotal = this.onChange(this.props.startTime, this.props.endTime, this.props.breakTime);
-			this.setState({
-				result: recalcuratedTotal
-			});
-		}
+		// if (prevProps !== this.props) {
+		// 	let recalcuratedTotal = this.onChange(this.props.startTime, this.props.endTime, this.props.breakTime);
+		// 	this.setState({
+		// 		result: recalcuratedTotal
+		// 	});
+		// }
 	}
 
 	render() {

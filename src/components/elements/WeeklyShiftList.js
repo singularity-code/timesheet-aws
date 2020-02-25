@@ -9,7 +9,7 @@ class WeeklyShiftList extends React.Component {
 		this.items = [];
 		this.totalHours = [];
 		this.state = {
-			data: props.data ? props.data : { week1: [], week2: [] },
+			data: props.data,
 			items: [],
 			userInfo: props.userInfo
 		};
@@ -32,16 +32,12 @@ class WeeklyShiftList extends React.Component {
 
 	componentDidUpdate(prevProps, prevState) {
 		let totalHours = 0;
-		if (prevState.data !== this.props.data) {
-			this.setState({
-				data: this.props.data
-			});
+		if (this.props.data !== this.state.data) {
 			this.historyMode = this.props.historyMode;
-			if (this.state.data) {
 				this.items = [];
 				this.totalHours = [];
 				let breakTime = 0;
-				for (const [index, data] of this.state.data.entries()) {
+				for (const [index, data] of this.props.data.entries()) {
 					const date = moment(data.tdate).format("YYYY-MM-DD");
 					breakTime = parseInt(data.breakTotal);
 					this.items.push(
@@ -61,11 +57,11 @@ class WeeklyShiftList extends React.Component {
 					totalHours += this.calTotal(data.start_time, data.end_time, breakTime);
 					this.totalHours = totalHours.toFixed(2);
 				}
-			}
 		}
 	}
 
 	render() {
+		console.log(this.items)
 		if (this.items.length !== 0) {
 			return (
 				<div className="ui middle aligned divided list">

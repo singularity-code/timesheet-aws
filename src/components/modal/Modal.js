@@ -56,6 +56,7 @@ class ModalCreateSheet extends Component {
       return false;
     }
     this.state.updateShift(dateNtimes);
+    this.close();
   }
 
   render() {

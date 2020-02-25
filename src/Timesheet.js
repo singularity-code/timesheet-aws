@@ -129,33 +129,13 @@ class Timesheet extends React.Component {
 		}
 	}
 
-	async getTimesheet() {
-		const result = {};
-		const seq = this.state.currentSeq;
-		if (this.payrollWeeks.length > 0) {
-			await axios.get("/timesheet/app/read", {
-					params: {
-						startDate: this.payrollWeeks[seq].this_monday,
-						endDate: this.payrollWeeks[seq].this_sunday,
-						token: this.state.userInfo.token
-					}
-				}).then(response => {
-					result.week1 = response.data;
-				});
-			await axios.get("/timesheet/app/read", {
-					params: {
-						startDate: this.payrollWeeks[seq].next_monday,
-						endDate: this.payrollWeeks[seq].next_sunday,
-						token: this.state.userInfo.token
-					}
-				}).then(response => {
-					result.week2 = response.data;
-				});
-			this.setState({
-				data: result
-			});
-			log.debug("Timesheet", result);
-		}
+	getTimesheet = () => {
+		console.log(this.state.data);
+		this.setState({
+			data: this.data
+		}, () => {
+			console.log(this.state.data);
+		});
 	}
 
 	async getRecords() {
@@ -266,6 +246,12 @@ class Timesheet extends React.Component {
 			});
 		}
 		this.setState({
+			data: {
+				week1: [],
+				week2: []
+			}
+		});
+		this.setState({
 			userInfo: {
 				token: "ACKJ@I#JRI",
 				department: "test",
@@ -315,9 +301,12 @@ class Timesheet extends React.Component {
 	}
 
 	updateShift = (data) => {
-		console.log(data);
 		this.data.week1.push(data);
-		console.log(this.data)
+		this.setState({
+			data : this.data
+		}, () => {
+			this.getTimesheet();
+		})
 	}
 
 	render() {
@@ -384,7 +373,7 @@ class Timesheet extends React.Component {
 					<h3>
 						{next_monday} ~ {next_sunday}
 					</h3>
-					<WeeklyShiftList data={this.state.data.week2} historyMode={this.historyMode} getTimesheet={this.getTimesheet} userInfo={this.state.userInfo} />
+					{/* <WeeklyShiftList data={this.state.data.week2} historyMode={this.historyMode} getTimesheet={this.getTimesheet} userInfo={this.state.userInfo} /> */}
 					<div style={{ marginBottom: "50px" }}>
 						<Modal getTimesheet={this.getTimesheet} userInfo={this.state.userInfo} historyMode={this.historyMode} updateShift={this.updateShift}/>
 						<Form
