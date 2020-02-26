@@ -38,17 +38,18 @@ class WeeklyShiftList extends React.Component {
 				this.totalHours = [];
 				let breakTime = 0;
 				for (const [index, data] of this.props.data.entries()) {
+					console.log("---", data);
 					const date = moment(data.tdate).format("YYYY-MM-DD");
 					breakTime = parseInt(data.breakTotal);
 					this.items.push(
 						<DayShift
-							key={data.timesheetId}
+							key={data.date}
 							index={index + 1}
 							historyMode={this.historyMode}
 							timesheetId={data.timesheetId}
 							date={date}
-							startTime={data.start_time}
-							endTime={data.end_time}
+							startTime={data.startTime}
+							endTime={data.endTime}
 							breakTime={breakTime}
 							getTimesheet={this.props.getTimesheet}
 							userInfo={this.state.userInfo}

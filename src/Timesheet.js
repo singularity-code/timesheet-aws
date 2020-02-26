@@ -263,7 +263,7 @@ class Timesheet extends React.Component {
 			}
 		}, () => {
 			this.getTimesheet();
-			this.getRecords();
+			//this.getRecords();
 			this.setState({ loading: false });
 		})
 	}
