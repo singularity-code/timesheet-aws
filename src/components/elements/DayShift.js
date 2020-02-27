@@ -36,31 +36,31 @@ class DayShift extends React.Component {
 
 	// TODO: Do not allow to delete previous data
 	async deleteShift() {
-		await axios
-			.get("/timesheet/data/delete", {
-				params: {
-					id: this.state.userInfo.id,
-					timesheetId: this.state.timesheetId
-				}
-			})
-			.then(result => {
-				if (result.status === 200 && result.data.affectedRows > 0) {
-					this.state.getTimesheet();
-					this.openNotificationWithIcon("success", " shift is deleted");
-				} 
-				else if (result.data.status === 'timeout') {
-          this.openNotificationWithIcon("error", result.data.message);
-          this.redirectToMain();
-        }
-				else {
-					log.error("Fail to delete data", result);
-					this.openNotificationWithIcon("error", "Fail to delete");
-				}
-			})
-			.catch(err => {
-				log.error(err);
-				this.redirectToMain();
-			});
+		// await axios
+		// 	.get("/timesheet/data/delete", {
+		// 		params: {
+		// 			id: this.state.userInfo.id,
+		// 			timesheetId: this.state.timesheetId
+		// 		}
+		// 	})
+		// 	.then(result => {
+		// 		if (result.status === 200 && result.data.affectedRows > 0) {
+		// 			this.state.getTimesheet();
+		// 			this.openNotificationWithIcon("success", " shift is deleted");
+		// 		}
+		// 		else if (result.data.status === 'timeout') {
+		//       this.openNotificationWithIcon("error", result.data.message);
+		//       this.redirectToMain();
+		//     }
+		// 		else {
+		// 			log.error("Fail to delete data", result);
+		// 			this.openNotificationWithIcon("error", "Fail to delete");
+		// 		}
+		// 	})
+		// 	.catch(err => {
+		// 		log.error(err);
+		// 		this.redirectToMain();
+		// 	});
 	}
 
 	async updateShift() {
@@ -79,12 +79,10 @@ class DayShift extends React.Component {
 					if (result.status === 200 && result.data.affectedRows > 0) {
 						this.state.getTimesheet();
 						this.openNotificationWithIcon("success", " shift is updated");
-					} 
-					else if (result.data.status === 'timeout') {
+					} else if (result.data.status === "timeout") {
 						this.openNotificationWithIcon("error", result.data.message);
 						this.redirectToMain();
-					}
-					else {
+					} else {
 						log.error("Fail to delete data", result);
 						this.openNotificationWithIcon("error", " Fail to update");
 					}
@@ -107,7 +105,7 @@ class DayShift extends React.Component {
 
 	setEndTime = time => {
 		let endTime = moment(time).format(this.state.format);
-		if(moment().format(this.state.startTime, "mm:ss") < endTime) {
+		if (moment().format(this.state.startTime, "mm:ss") < endTime) {
 			this.setState({ endTime }, () => {
 				this.updateShift();
 			});
@@ -142,33 +140,25 @@ class DayShift extends React.Component {
 					<tr>
 						<td>{this.state.date_label}</td>
 						<td>
-							<div className="ui label">
-								{this.state.date_label}
-							</div>
+							<div className="ui label">{this.state.date_label}</div>
 							<div className="ui small input">
 								<input id={this.state.id} type="text" value={this.state.date} readOnly></input>
 							</div>
 						</td>
 						<td>
-							<div className="ui label">
-								Start
-							</div>
+							<div className="ui label">Start</div>
 							<div className="ui small input">
 								<input id={this.state.id} type="text" value={this.state.startTime} readOnly></input>
 							</div>
 						</td>
 						<td>
-							<div className="ui label">
-								Break
-							</div>
+							<div className="ui label">Break</div>
 							<div className="ui small input">
 								<input id={this.state.id} type="text" value={this.state.breakTime} readOnly></input>
 							</div>
 						</td>
 						<td>
-							<div className="ui label">
-								End
-							</div>
+							<div className="ui label">End</div>
 							<div className="ui small input">
 								<input id={this.state.id} type="text" value={this.state.endTime} readOnly></input>
 							</div>
