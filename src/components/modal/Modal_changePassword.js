@@ -35,6 +35,7 @@ class ModalChangePassword extends Component {
   };
 
   async handleSubmit() {
+    return true;
     if(this.state.password === this.state.passwordChk) {
       this.openNotificationWithIcon('success', 'Password Matched');
       const result = await axios.put('/timesheet/data/user/changePwd', {

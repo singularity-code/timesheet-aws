@@ -36,6 +36,7 @@ class ModalCreateUser extends Component {
   };
 
   async handleSubmit() {
+    return true;
     if(this.state.mode === 'create') {
       const res = await axios.get('timesheet/user/checkUser', {
         params: {

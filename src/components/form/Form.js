@@ -247,16 +247,16 @@ class Form extends React.Component {
 								</tr>
 								<tr>
 									<td className="koiDetails" align="right">
-										Level 1, 31 Market Street, Sydney NSW 2000
+										Address
 									</td>
 								</tr>
 								<tr>
 									<td className="koiDetails" align="right">
-										Email & Website accounts@koi.edu.au www.koi.edu.au{" "}
+										Email{" "}
 									</td>
 								</tr>
 								<tr className="koiDetails" align="right">
-									<td>Telephone (+61 2) 9283 3583 Fax (+61 2) 9283 3683</td>
+									<td>Telephone </td>
 								</tr>
 							</thead>
 						</table>
