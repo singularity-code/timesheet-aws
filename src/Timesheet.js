@@ -130,7 +130,6 @@ class Timesheet extends React.Component {
 	}
 
 	getTimesheet = () => {
-		console.log(this.state.data);
 		this.setState({
 			data: this.data
 		}, () => {
@@ -309,6 +308,19 @@ class Timesheet extends React.Component {
 		})
 	}
 
+	deleteShift = (date) => {
+		for (let item of this.data.week1) {
+			if(item.date === date) {
+				this.data.week1.pop(item);
+			}
+		}
+		this.setState({
+			data : this.data
+		}, () => {
+			this.getTimesheet();
+		})
+	}
+
 	render() {
 		const dateFormat = "DD/MM/YYYY";
 		const visible = this.state.visible;
@@ -368,14 +380,14 @@ class Timesheet extends React.Component {
 					<h3>
 						{this_monday} ~ {this_sunday}
 					</h3>
-					<WeeklyShiftList data={this.state.data.week1} historyMode={this.historyMode} getTimesheet={this.getTimesheet} userInfo={this.state.userInfo} />
+					<WeeklyShiftList data={this.state.data.week1} historyMode={this.historyMode} getTimesheet={this.getTimesheet} userInfo={this.state.userInfo} deleteShift={this.deleteShift} />
 					<br />
 					<h3>
 						{next_monday} ~ {next_sunday}
 					</h3>
 					{/* <WeeklyShiftList data={this.state.data.week2} historyMode={this.historyMode} getTimesheet={this.getTimesheet} userInfo={this.state.userInfo} /> */}
 					<div style={{ marginBottom: "50px" }}>
-						<Modal getTimesheet={this.getTimesheet} userInfo={this.state.userInfo} historyMode={this.historyMode} updateShift={this.updateShift}/>
+						<Modal getTimesheet={this.getTimesheet} userInfo={this.state.userInfo} historyMode={this.historyMode} updateShift={this.updateShift} />
 						<Form
 							ref={el => (this.componentRef = el)}
 							payrollWeeks={this.state.payrollWeeks}
