@@ -56,7 +56,7 @@ class WeeklyShiftList extends React.Component {
 						deleteShift={this.state.deleteShift}
 					/>
 				);
-				totalHours += this.calTotal(data.start_time, data.end_time, breakTime);
+				totalHours += this.calTotal(data.startTime, data.endTime, breakTime);
 				this.totalHours = totalHours.toFixed(2);
 			}
 		}

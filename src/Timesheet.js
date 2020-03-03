@@ -383,7 +383,7 @@ class Timesheet extends React.Component {
 					<WeeklyShiftList data={this.state.data.week1} historyMode={this.historyMode} getTimesheet={this.getTimesheet} userInfo={this.state.userInfo} deleteShift={this.deleteShift} />
 					<br />
 					<h3>
-						{next_monday} ~ {next_sunday}
+						{/* {next_monday} ~ {next_sunday} */}
 					</h3>
 					{/* <WeeklyShiftList data={this.state.data.week2} historyMode={this.historyMode} getTimesheet={this.getTimesheet} userInfo={this.state.userInfo} /> */}
 					<div style={{ marginBottom: "50px" }}>
