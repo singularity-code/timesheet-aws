@@ -35,30 +35,30 @@ class WeeklyShiftList extends React.Component {
 		let totalHours = 0;
 		if (this.props.data !== this.state.data) {
 			this.historyMode = this.props.historyMode;
-				this.items = [];
-				this.totalHours = [];
-				let breakTime = 0;
-				for (const [index, data] of this.props.data.entries()) {
-					const date = moment(data.tdate).format("YYYY-MM-DD");
-					breakTime = parseInt(data.breakTotal);
-					this.items.push(
-						<DayShift
-							key={data.date}
-							index={index + 1}
-							historyMode={this.historyMode}
-							timesheetId={data.timesheetId}
-							date={date}
-							startTime={data.startTime}
-							endTime={data.endTime}
-							breakTime={breakTime}
-							getTimesheet={this.props.getTimesheet}
-							userInfo={this.state.userInfo}
-							deleteShift={this.state.deleteShift}
-						/>
-					);
-					totalHours += this.calTotal(data.start_time, data.end_time, breakTime);
-					this.totalHours = totalHours.toFixed(2);
-				}
+			this.items = [];
+			this.totalHours = [];
+			let breakTime = 0;
+			for (const [index, data] of this.props.data.entries()) {
+				const date = moment(data.date).format("YYYY-MM-DD");
+				breakTime = parseInt(data.breakTotal);
+				this.items.push(
+					<DayShift
+						key={data.date}
+						index={index + 1}
+						historyMode={this.historyMode}
+						timesheetId={data.timesheetId}
+						date={date}
+						startTime={data.startTime}
+						endTime={data.endTime}
+						breakTime={breakTime}
+						getTimesheet={this.props.getTimesheet}
+						userInfo={this.state.userInfo}
+						deleteShift={this.state.deleteShift}
+					/>
+				);
+				totalHours += this.calTotal(data.start_time, data.end_time, breakTime);
+				this.totalHours = totalHours.toFixed(2);
+			}
 		}
 	}
 

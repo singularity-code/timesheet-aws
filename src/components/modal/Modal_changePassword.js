@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
-import axios from 'axios';
 import moment from 'moment';
 import { Form, Button } from 'semantic-ui-react'
 import { Modal } from 'semantic-ui-react'
 import { notification } from 'antd';
 import BasicButton from '../buttons/Button';
-import log from 'loglevel';
 
 class ModalChangePassword extends Component {
   constructor(props) {
@@ -25,7 +23,7 @@ class ModalChangePassword extends Component {
   show = size => () => this.setState({ size, open: true })
   close = () => this.setState({ open: false })
 
-  openNotificationWithIcon(type, text) {
+  openNotificationWithIcon = function(type, text) {
     notification.config({
       placement: 'topLeft'
     });
@@ -34,32 +32,9 @@ class ModalChangePassword extends Component {
     });
   };
 
-  async handleSubmit() {
-    return true;
+  handleSubmit() {
     if(this.state.password === this.state.passwordChk) {
-      this.openNotificationWithIcon('success', 'Password Matched');
-      const result = await axios.put('/timesheet/data/user/changePwd', {
-        params: {
-          id : this.state.id,
-          password : this.state.password
-        }
-      }).catch(err => {
-        log.error(err);
-      });
-      if(result.status === 200 && result.data.affectedRows > 0) {
-        this.openNotificationWithIcon('success', 'Password Changed Successfully!');
-        this.close();
-      } 
-      else if (result.data.status === 'timeout') {
-        this.openNotificationWithIcon("error", result.data.message);
-        setTimeout(function() {
-          window.location.href = "http://localhost:3000";
-        }, 5000);
-      }
-      else {
-        this.openNotificationWithIcon('error', 'Fail to change password');
-        log.error('Fail to update data', result);
-      }
+      this.openNotificationWithIcon("warning", "Thank you for testing demo");
     } else {
       this.openNotificationWithIcon('error', 'Password Not Matched !!!');
     }

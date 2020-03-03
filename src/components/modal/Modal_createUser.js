@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import axios from 'axios';
 import moment from 'moment';
 import { Form, Button, Modal } from 'semantic-ui-react'
 import { notification } from 'antd';
-import log from 'loglevel';
 import BasicButton from '../buttons/Button';
 
 class ModalCreateUser extends Component {
@@ -26,7 +24,7 @@ class ModalCreateUser extends Component {
   show = size => () => this.setState({ size, open: true })
   close = () => this.setState({ open: false })
 
-  openNotificationWithIcon(type, text) {
+  openNotificationWithIcon = function(type, text) {
     notification.config({
       placement: 'topLeft'
     });
@@ -35,53 +33,8 @@ class ModalCreateUser extends Component {
     });
   };
 
-  async handleSubmit() {
-    return true;
-    if(this.state.mode === 'create') {
-      const res = await axios.get('timesheet/user/checkUser', {
-        params: {
-          surName : this.state.lastName,
-          givenName : this.state.firstName,
-          id : this.state.firstName + '.' + this.state.lastName
-        }
-      }).catch(err => {
-        log.error(err);
-      });
-      if(res && res.data[0] && res.data[0].STAFF_ID) {
-        this.openNotificationWithIcon('warning', res.data[0].GIVEN_NM + '.' + res.data[0].SURNM + ' IS ALREADY EXIST IN SIMS!');
-        this.openNotificationWithIcon('warning', 'Note: ' + res.data[0].REMARK);
-        return false;
-      }
-      
-      if(res.data && res.data.length === 0) {
-        await axios.get('timesheet/data/user/createUser', {
-          params: {
-            id : this.state.firstName + '.' + this.state.lastName,
-            password : this.state.password,
-            firstName : this.state.firstName,
-            lastName : this.state.lastName,
-            department : this.state.department ? this.state.department : "Unknown",
-            position : this.state.position ? this.state.position : "Casual"
-          }
-        }).then(result => {
-          if(result.status === 200 && result.data.affectedRows > 0) {
-            this.openNotificationWithIcon('success', this.state.firstName + '.' + this.state.lastName + ' is created successfully');
-          } else if (result.status === 304) {
-            this.openNotificationWithIcon('error', this.state.firstName + '.' + this.state.lastName + ' IS ALREADY EXIST!');
-          } else if (result.data.status === 'timeout') {
-            this.openNotificationWithIcon("error", result.data.message);
-            setTimeout(function() {
-              window.location.href = "http://localhost:3000";
-            }, 5000);
-          } else {
-            this.openNotificationWithIcon('error', 'Fail to create a new user');
-          }
-          this.close();
-        });
-      } else {
-        this.openNotificationWithIcon('error', this.state.firstName + '.' + this.state.lastName + ' could not created');
-      }
-    }
+  handleSubmit() {
+    this.openNotificationWithIcon("warning", "Thank you for testing demo");
   }
 
   setFirstname = (e) => {

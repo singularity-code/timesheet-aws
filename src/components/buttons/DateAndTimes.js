@@ -106,8 +106,6 @@ class DateAndTimes extends React.Component {
         </div>
         <p>You <font color="red">can not</font> add <font color="red">same date</font> already inserted.</p>
         <p>If you had <b>ONE BREAKTIME</b>, just provide <b>ONE</b> of any of them.</p>
-        <p>Accounting Issue: <font color="red">accounts@koi.edu.au</font></p>
-        <p>Technical Issue: <font color="blue">itsupport@koi.edu.au</font></p>
         <div className="ui horizontal divider">
           <h4 className="ui header">
             <i aria-hidden="true" className="pencil icon"></i>
