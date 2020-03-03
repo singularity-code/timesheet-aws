@@ -133,7 +133,7 @@ class Timesheet extends React.Component {
 		this.setState({
 			data: this.data
 		}, () => {
-			console.log(this.state.data);
+			//console.log(this.state.data);
 		});
 	}
 

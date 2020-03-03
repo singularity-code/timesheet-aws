@@ -24,7 +24,6 @@ class DayShift extends React.Component {
 			getTimesheet: this.props.getTimesheet,
 			deleteShift: this.props.deleteShift
 		};
-		this.updateShift = this.updateShift.bind(this);
 		this.redirectToMain = this.redirectToMain.bind(this);
 	}
 
@@ -38,63 +37,9 @@ class DayShift extends React.Component {
 		this.state.deleteShift(this.state.date);
 	}
 
-	// TODO: Do not allow to delete previous data
-	//deleteShift = async function() {
-		// await axios
-		// 	.get("/timesheet/data/delete", {
-		// 		params: {
-		// 			id: this.state.userInfo.id,
-		// 			timesheetId: this.state.timesheetId
-		// 		}
-		// 	})
-		// 	.then(result => {
-		// 		if (result.status === 200 && result.data.affectedRows > 0) {
-		// 			this.state.getTimesheet();
-		// 			this.openNotificationWithIcon("success", " shift is deleted");
-		// 		}
-		// 		else if (result.data.status === 'timeout') {
-		//       this.openNotificationWithIcon("error", result.data.message);
-		//       this.redirectToMain();
-		//     }
-		// 		else {
-		// 			log.error("Fail to delete data", result);
-		// 			this.openNotificationWithIcon("error", "Fail to delete");
-		// 		}
-		// 	})
-		// 	.catch(err => {
-		// 		log.error(err);
-		// 		this.redirectToMain();
-		// 	});
-	//}
-
-	async updateShift() {
+	updateShift = async function() {
 		if (!(this.state.endTime <= this.state.startTime || this.state.startTime >= this.state.endTime)) {
-			await axios
-				.get("/timesheet/data/update", {
-					params: {
-						id: this.state.userInfo.id,
-						timesheetId: this.state.timesheetId,
-						date: this.state.date,
-						startTime: this.state.startTime,
-						endTime: this.state.endTime
-					}
-				})
-				.then(result => {
-					if (result.status === 200 && result.data.affectedRows > 0) {
-						this.state.getTimesheet();
-						this.openNotificationWithIcon("success", " shift is updated");
-					} else if (result.data.status === "timeout") {
-						this.openNotificationWithIcon("error", result.data.message);
-						this.redirectToMain();
-					} else {
-						log.error("Fail to delete data", result);
-						this.openNotificationWithIcon("error", " Fail to update");
-					}
-				})
-				.catch(err => {
-					log.error(err);
-					this.redirectToMain();
-				});
+			this.openNotificationWithIcon("success", ` Updated`);
 		} else {
 			this.openNotificationWithIcon("error", ` Invalid Times. Check start time and end time`);
 		}
