@@ -21,9 +21,9 @@ class DayShift extends React.Component {
 			endTime: this.props.endTime instanceof moment ? this.props.endTime.format(this.state.format) : this.props.endTime,
 			breakTime: props.breakTime ? props.breakTime : "0",
 			updateStatus: false,
-			getTimesheet: this.props.getTimesheet
+			getTimesheet: this.props.getTimesheet,
+			deleteShift: this.props.deleteShift
 		};
-		this.deleteShift = this.deleteShift.bind(this);
 		this.updateShift = this.updateShift.bind(this);
 		this.redirectToMain = this.redirectToMain.bind(this);
 	}
@@ -34,8 +34,12 @@ class DayShift extends React.Component {
 		}, 3500);
 	}
 
+	deleteShift = () => {
+		this.state.deleteShift(this.state.date);
+	}
+
 	// TODO: Do not allow to delete previous data
-	async deleteShift() {
+	//deleteShift = async function() {
 		// await axios
 		// 	.get("/timesheet/data/delete", {
 		// 		params: {
@@ -61,7 +65,7 @@ class DayShift extends React.Component {
 		// 		log.error(err);
 		// 		this.redirectToMain();
 		// 	});
-	}
+	//}
 
 	async updateShift() {
 		if (!(this.state.endTime <= this.state.startTime || this.state.startTime >= this.state.endTime)) {

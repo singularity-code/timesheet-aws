@@ -11,7 +11,8 @@ class WeeklyShiftList extends React.Component {
 		this.state = {
 			data: props.data,
 			items: [],
-			userInfo: props.userInfo
+			userInfo: props.userInfo,
+			deleteShift: props.deleteShift
 		};
 	}
 
@@ -38,7 +39,6 @@ class WeeklyShiftList extends React.Component {
 				this.totalHours = [];
 				let breakTime = 0;
 				for (const [index, data] of this.props.data.entries()) {
-					console.log("---", data);
 					const date = moment(data.tdate).format("YYYY-MM-DD");
 					breakTime = parseInt(data.breakTotal);
 					this.items.push(
@@ -53,6 +53,7 @@ class WeeklyShiftList extends React.Component {
 							breakTime={breakTime}
 							getTimesheet={this.props.getTimesheet}
 							userInfo={this.state.userInfo}
+							deleteShift={this.state.deleteShift}
 						/>
 					);
 					totalHours += this.calTotal(data.start_time, data.end_time, breakTime);
@@ -62,7 +63,6 @@ class WeeklyShiftList extends React.Component {
 	}
 
 	render() {
-		console.log(this.items)
 		if (this.items.length !== 0) {
 			return (
 				<div className="ui middle aligned divided list">

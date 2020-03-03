@@ -12,10 +12,14 @@ class Button extends React.Component {
     };
   }
 
+  onClick = () => {
+    this.state.onClick();
+  }
+
   render() {
     return (
       <div>
-        <button className={this.state.css} onClick={() => this.state.onClick()}>
+        <button className={this.state.css} onClick={this.onClick}>
           <i className={this.state.icon} /> {this.state.text}
         </button>
       </div>
