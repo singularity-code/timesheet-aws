@@ -1,9 +1,7 @@
 import React from "react";
-import axios from "axios";
 import ShiftCalculator from "./ShiftCalculator";
 import Button from "../buttons/Button";
 import BaiscInput from "../buttons/BasicInput";
-import log from "loglevel";
 import moment from "moment";
 import { TimePicker, notification } from "antd";
 
