@@ -276,34 +276,22 @@ class Timesheet extends React.Component {
 
 	async onLogOutClick() {
 		this.setState({ loading: true });
-		await axios.get("/timesheet/user/logout", {
-				params: {
-					token: this.state.userInfo.token
-				}
-			}).then(response => {
-				this.setState({ loading: false });
-				if (response.data.status === "timeout") {
-					this.openNotificationWithIcon("error", response.data.message);
-					this.redirectToMain();
-				} else {
-					this.setState(
-						{
-							records: [],
-							recordsItems: [],
-							data: { week1: [], week2: [] },
-							userInfo: {
-								//loggedIn: false
-							},
-							id: "",
-							pw: ""
-						},
-						function() {
-							this.openNotificationWithIcon("success", "Logout Successfully");
-						}
-					);
-				}
-				this.setState({ loading: false });
-			});
+		this.setState(
+			{
+				records: [],
+				recordsItems: [],
+				data: { week1: [], week2: [] },
+				userInfo: {
+					//loggedIn: false
+				},
+				id: "",
+				pw: ""
+			},
+			function() {
+				this.openNotificationWithIcon("success", "Logout Successfully");
+			}
+		);
+		this.setState({ loading: false });
 	}
 
 	updateShift = (data) => {
@@ -355,7 +343,7 @@ class Timesheet extends React.Component {
 			passChgBtn = <div></div>;
 		}
 		if (this.state.userInfo.accessLevel > 0) {
-			createBtn = <ModalCreateUser text="USER CRAFT" mode="create" userInfo={this.state.userInfo} />;
+			createBtn = <ModalCreateUser text="Create User" mode="create" userInfo={this.state.userInfo} />;
 		} else {
 			createBtn = <div></div>;
 		}

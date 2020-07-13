@@ -53,7 +53,7 @@ class Button_login extends React.Component {
 								<div className="field">
 									<label>User ID</label>
 									<div className="ui left icon input">
-										<input id="userId" type="text" placeholder="ID" onChange={event => this.state.setId(event.target.value)} onKeyPress={this.handleKeyPress} />
+										<input id="userId" type="text" placeholder="ID" value="test" onChange={event => this.state.setId(event.target.value)} onKeyPress={this.handleKeyPress} />
 										<i className="user icon"></i>
 									</div>
 								</div>
@@ -73,7 +73,7 @@ class Button_login extends React.Component {
 					<div className="ui vertical divider">-</div>
 				</div>
 				<h5>
-					* This is a prototype version
+					* Prototype version, ID and Password does not required. "PRESS LOG IN"
 				</h5>
 			</div>
 		);
