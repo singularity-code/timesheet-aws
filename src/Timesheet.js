@@ -157,7 +157,14 @@ class Timesheet extends React.Component {
 	}
 
 	createPayrollSeq() {
-		let firstDay = "2019-07-01";
+		let firstDay = "";
+		let today = new Date();
+		if(today.getMonth() !== 6 && today.getDate() !== 30) {
+			firstDay = today.getFullYear() - 1;
+		} else {
+			firstDay = today.getFullYear();
+		}
+		firstDay += "-07-01";
 		let payrollWeeks = [];
 		for (let i = 0; i < 27; i++) {
 			payrollWeeks.push({
