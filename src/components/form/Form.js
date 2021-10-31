@@ -111,10 +111,11 @@ class Form extends React.Component {
 		let week1_table = null;
 		let week2_table = null;
 		const dateFormat = "DD/MM/YYYY";
-		const this_monday = moment(this.state.payrollWeeks[this.state.currentSeq].this_monday).format(dateFormat);
-		const this_sunday = moment(this.state.payrollWeeks[this.state.currentSeq].this_sunday).format(dateFormat);
-		const next_monday = moment(this.state.payrollWeeks[this.state.currentSeq].next_monday).format(dateFormat);
-    const next_sunday = moment(this.state.payrollWeeks[this.state.currentSeq].next_sunday).format(dateFormat);
+		const seq = this.state.currentSeq ? this.state.currentSeq : 0;
+		const this_monday = moment(this.state.payrollWeeks[seq].this_monday).format(dateFormat);
+		const this_sunday = moment(this.state.payrollWeeks[seq].this_sunday).format(dateFormat);
+		const next_monday = moment(this.state.payrollWeeks[seq].next_monday).format(dateFormat);
+    const next_sunday = moment(this.state.payrollWeeks[seq].next_sunday).format(dateFormat);
     
     if(signatureURL) {
       signature = <div className="signatureImg"><img alt="Error: Please clear and sign manually" src={this.state.signatureURL} /> {this.state.userInfo.firstName} {this.state.userInfo.lastName} {moment().format(dateFormat)}</div>;

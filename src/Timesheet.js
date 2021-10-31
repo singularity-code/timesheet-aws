@@ -25,7 +25,7 @@ class Timesheet extends React.Component {
 		const next_sunday = moment().day(14).format(format);
 		this.historyMode = false;
 		this.state = {
-			version: "2020.01",
+			version: "2021.04",
 			userInfo: {
 				token: "",
 				department: ""
@@ -183,7 +183,7 @@ class Timesheet extends React.Component {
 		for (let i = 0; i < this.payrollWeeks.length; i++) {
 			const today = moment();
 			if (today.isBetween(this.payrollWeeks[i].this_monday, this.payrollWeeks[i].next_sunday)) {
-				this.setState({ currentSeq: i });
+				this.setState({ currentSeq: 0 });
 			}
 		}
 	}
@@ -330,11 +330,13 @@ class Timesheet extends React.Component {
 		let next_monday;
 		let next_sunday;
 
-		if (this.state.payrollWeeks.length > 0) {
-			this_monday = moment(this.state.payrollWeeks[this.state.currentSeq].this_monday).format(dateFormat);
-			this_sunday = moment(this.state.payrollWeeks[this.state.currentSeq].this_sunday).format(dateFormat);
-			next_monday = moment(this.state.payrollWeeks[this.state.currentSeq].next_monday).format(dateFormat);
-			next_sunday = moment(this.state.payrollWeeks[this.state.currentSeq].next_sunday).format(dateFormat);
+		if (this.state.payrollWeeks && this.state.payrollWeeks.length > 0) {
+			if(this.state.payrollWeeks[this.state.currentSeq]) {
+				this_monday = moment(this.state.payrollWeeks[this.state.currentSeq].this_monday).format(dateFormat);
+				this_sunday = moment(this.state.payrollWeeks[this.state.currentSeq].this_sunday).format(dateFormat);
+				next_monday = moment(this.state.payrollWeeks[this.state.currentSeq].next_monday).format(dateFormat);
+				next_sunday = moment(this.state.payrollWeeks[this.state.currentSeq].next_sunday).format(dateFormat);
+			}
 		}
 
 		if (this.state.userInfo.origin !== "SIMS") {
