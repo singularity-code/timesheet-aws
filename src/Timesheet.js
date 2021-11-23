@@ -53,6 +53,16 @@ class Timesheet extends React.Component {
       handleShowClick: () => this.setState({ visible: true }),
       handleSidebarHide: () => this.setState({ visible: false }),
     };
+	//test data
+	// {
+	// 	breakTime1: '0',
+	// 	breakTime2: '0',
+	// 	breakTime3: '0',
+	// 	breakTime4: '0',
+	// 	date: '2021-07-01',
+	// 	startTime: '08:30',
+	// 	endTime: '17:30',
+	//   }
     this.data = {
       week1: [],
       week2: [],
@@ -282,6 +292,8 @@ class Timesheet extends React.Component {
       () => {
         this.getTimesheet();
         //this.getRecords();
+		
+		//set
         this.setState({ loading: false });
       },
     );
@@ -308,6 +320,7 @@ class Timesheet extends React.Component {
   }
 
   updateShift = (data) => {
+    console.log(data);
     this.data.week1.push(data);
     this.setState(
       {
@@ -420,7 +433,7 @@ class Timesheet extends React.Component {
             <div>
               <div align="right">
                 <h2>
-				<Image src={Faker.image.people()} avatar/> {this.state.userInfo.firstName} {this.state.userInfo.lastName}
+                  <Image src={Faker.image.animals()} avatar /> {this.state.userInfo.firstName} {this.state.userInfo.lastName}
                 </h2>
                 <Button className="ui right floated red basic button" disabled={visible} onClick={this.onLogOutClick}>
                   LOG OUT

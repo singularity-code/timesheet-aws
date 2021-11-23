@@ -19,7 +19,7 @@ class FormFragment extends React.Component {
     return (
       <React.Fragment>
         <tr>
-          <td><BasicInput value={this.state.date} /></td>
+          <td><BasicInput key={1} value={this.state.date} /></td>
           <td><BasicInput value={this.state.startTime} /></td>
           <td><BasicInput value={this.state.breakTime} /></td>
           <td><BasicInput value={this.state.endTime} /></td>

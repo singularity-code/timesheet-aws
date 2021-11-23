@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import moment from "moment";
-import { Form, Button } from "semantic-ui-react";
-import { Modal } from "semantic-ui-react";
-import { notification } from "antd";
-import BasicButton from "../buttons/Button";
-import DateAndTimes from "../buttons/DateAndTimes";
+import React, { Component } from 'react';
+import moment from 'moment';
+import { Form, Button } from 'semantic-ui-react';
+import { Modal } from 'semantic-ui-react';
+import { notification } from 'antd';
+import BasicButton from '../buttons/Button';
+import DateAndTimes from '../buttons/DateAndTimes';
 
 class ModalCreateSheet extends Component {
   constructor(props) {
@@ -13,40 +13,40 @@ class ModalCreateSheet extends Component {
     this.endTimeElement = React.createRef();
     this.state = {
       open: false,
-      format: "HH:mm",
+      format: 'HH:mm',
       accountId: props.accountId,
       timesheetId: props.timesheetId,
-      date: props.date ? props.date : moment().format("YYYY-MM-DD"),
+      date: props.date ? props.date : moment().format('YYYY-MM-DD'),
       breakTime1: props.breakTime1,
       breakTime2: props.breakTime2,
       breakTime3: props.breakTime3,
       breakTime4: props.breakTime4,
       startTime: props.startTime,
       endTime: props.endTime,
-      requestSatus: "",
+      requestSatus: '',
       getTimesheet: props.getTimesheet,
       userInfo: props.userInfo,
-      updateShift: props.updateShift
+      updateShift: props.updateShift,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.redirectToMain = this.redirectToMain.bind(this);
   }
 
-  show = size => () => this.setState({ size, open: true });
+  show = (size) => () => this.setState({ size, open: true });
   close = () => this.setState({ open: false });
 
   openNotificationWithIcon(type, text) {
     notification.config({
-      placement: "topLeft"
+      placement: 'topLeft',
     });
     notification[type]({
-      message: [text]
+      message: [text],
     });
   }
 
   redirectToMain() {
-    setTimeout(function() {
-      window.location.href = "http://localhost:3000";
+    setTimeout(function () {
+      window.location.href = 'http://localhost:3000';
     }, 5000);
   }
 
@@ -57,15 +57,15 @@ class ModalCreateSheet extends Component {
     }
     this.state.updateShift(dateNtimes);
     this.close();
-  }
+  };
 
   render() {
     const { open, size } = this.state;
-    const btnText = "ADD A SHIFT";
+    const btnText = 'ADD A SHIFT';
     if (!this.props.historyMode) {
       return (
         <div>
-          <BasicButton text={btnText} css="ui right floated basic red button" icon="large pencil alternate icon" onClick={this.show("tiny")}></BasicButton>
+          <BasicButton text={btnText} css="ui right floated basic red button" icon="large pencil alternate icon" onClick={this.show('tiny')}></BasicButton>
 
           <Modal size={size} open={open} onClose={this.close}>
             <Modal.Content>
@@ -89,7 +89,7 @@ class ModalCreateSheet extends Component {
         </div>
       );
     } else {
-      return "";
+      return '';
     }
   }
 }
