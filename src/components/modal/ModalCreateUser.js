@@ -43,7 +43,7 @@ class ModalCreateUser extends Component {
       this.openNotificationWithIcon('warning', 'Password does not match.');
       return;
     }
-    this.openNotificationWithIcon('success', 'New user created');
+    this.openNotificationWithIcon('success', `New user [${this.state.firstName} ${this.state.lastName}] created`);
     this.close();
   }
   setFirstname = (e) => {
@@ -160,7 +160,7 @@ class ModalCreateUser extends Component {
                         <td className="four wide">Password</td>
                         <td>
                           <h3>
-                            <input type="password" onChange={this.setPassword} />
+                            <input type="password" autoComplete="off" onChange={this.setPassword} />
                           </h3>
                         </td>
                       </tr>
@@ -168,7 +168,7 @@ class ModalCreateUser extends Component {
                         <td className="four wide">Confirm Password</td>
                         <td>
                           <h3>
-                            <input type="password" onChange={this.setPasswordConfirm} />
+                            <input type="password" autoComplete="off" onChange={this.setPasswordConfirm} />
                           </h3>
                         </td>
                       </tr>
