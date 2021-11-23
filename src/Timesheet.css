@@ -1,14 +1,18 @@
 html {
-    font-size: 15px;
+  font-size: 15px;
 }
 tr {
-    width: auto;  
-    max-width: auto;
-    white-space:nowrap;
+  width: auto;
+  max-width: auto;
+  white-space: nowrap;
 }
 
 .koiLogo {
-    width: 130px;
-    height: 60px;
-    margin-right: 0;
+  width: 130px;
+  height: 60px;
+  margin-right: 0;
+}
+
+.textDemo {
+    text-align: right;
 }

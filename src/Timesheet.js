@@ -430,6 +430,7 @@ class Timesheet extends React.Component {
 		return (
 			<div className="ui fluid container" style={{ width: "85%" }}>
 				{timesheet}
+				<p className="textDemo">■ Demo Version developed by DL</p>
 			</div>
 		);
 	}
