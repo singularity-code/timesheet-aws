@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import WeeklyShiftList from './components/elements/WeeklyShiftList';
-import { Button, Menu, Segment, Sidebar, Dimmer, Loader } from 'semantic-ui-react';
+import { Button, Menu, Segment, Sidebar, Dimmer, Loader, Image } from 'semantic-ui-react';
 import BasicButton from './components/buttons/Button';
 import Modal from './components/modal/Modal';
 import ModalCreateUser from './components/modal/ModalCreateUser';
@@ -26,7 +26,7 @@ class Timesheet extends React.Component {
     this.historyMode = false;
     this.state = {
       version: '2021.11.001',
-	  isDemo: true,
+      isDemo: true,
       userInfo: {
         token: '',
         department: '',
@@ -167,7 +167,7 @@ class Timesheet extends React.Component {
   createPayrollSeq() {
     let firstDay = '';
     let today = new Date();
-    if (!this.state.isDemo && (today.getMonth() !== 6 && today.getDate() !== 30)) {
+    if (!this.state.isDemo && today.getMonth() !== 6 && today.getDate() !== 30) {
       firstDay = today.getFullYear() - 1;
     } else {
       firstDay = today.getFullYear();
@@ -349,7 +349,6 @@ class Timesheet extends React.Component {
     let next_monday;
     let next_sunday;
 
-    console.log(this.state.currentSeq);
     if (this.state.payrollWeeks && this.state.payrollWeeks.length > 0) {
       if (this.state.payrollWeeks[this.state.currentSeq]) {
         this_monday = moment(this.state.payrollWeeks[this.state.currentSeq].this_monday).format(dateFormat);
@@ -421,7 +420,7 @@ class Timesheet extends React.Component {
             <div>
               <div align="right">
                 <h2>
-                  {this.state.userInfo.firstName} {this.state.userInfo.lastName}
+				<Image src={Faker.image.people()} avatar/> {this.state.userInfo.firstName} {this.state.userInfo.lastName}
                 </h2>
                 <Button className="ui right floated red basic button" disabled={visible} onClick={this.onLogOutClick}>
                   LOG OUT
