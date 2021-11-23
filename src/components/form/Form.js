@@ -284,7 +284,7 @@ class Form extends React.Component {
 							<div>Signature: {signature}</div>
 							<p />
 							<p />
-							<p>Authorised: __________________________________________ (Supervisor)</p>
+							<p>Authorised: __________________________________________ </p>
 						</div>
 					</div>
 				</div>

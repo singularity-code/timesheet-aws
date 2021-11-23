@@ -40,7 +40,7 @@ class ModalCreateUser extends Component {
       return;
     }
     if (this.state.password !== this.state.passwordConfirm) {
-      this.openNotificationWithIcon('warning', 'Password does not match.');
+      this.openNotificationWithIcon('error', 'Password does not match.');
       return;
     }
     this.openNotificationWithIcon('success', `New user [${this.state.firstName} ${this.state.lastName}] created`);

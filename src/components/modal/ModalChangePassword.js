@@ -35,9 +35,10 @@ class ModalChangePassword extends Component {
 
   handleSubmit() {
     if (this.state.password === this.state.passwordChk) {
-      this.openNotificationWithIcon('warning', 'Thank you for testing demo');
+      this.openNotificationWithIcon('success', 'Password changed');
+      this.close();
     } else {
-      this.openNotificationWithIcon('error', 'Password Not Matched !!!');
+      this.openNotificationWithIcon('error', 'Password does not match.');
     }
   }
 
@@ -72,7 +73,7 @@ class ModalChangePassword extends Component {
                         <td className="four wide">Password</td>
                         <td>
                           <h2>
-                            <input type="password" onChange={this.setPassword} />
+                            <input type="password" autoComplete="off" onChange={this.setPassword} />
                           </h2>
                         </td>
                       </tr>
@@ -80,7 +81,7 @@ class ModalChangePassword extends Component {
                         <td className="four wide">Confirm Password</td>
                         <td>
                           <h2>
-                            <input type="password" onChange={this.setPasswordChk} />
+                            <input type="password" autoComplete="off" onChange={this.setPasswordChk} />
                           </h2>
                         </td>
                       </tr>
