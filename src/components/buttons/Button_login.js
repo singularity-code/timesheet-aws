@@ -73,7 +73,7 @@ class Button_login extends React.Component {
 					<div className="ui vertical divider">-</div>
 				</div>
 				<h5>
-					* Prototype version, ID and Password does not required. "PRESS LOG IN"
+					* This app is a prototype version. Just presss "LOG IN"
 				</h5>
 			</div>
 		);

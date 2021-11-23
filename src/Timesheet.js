@@ -5,8 +5,8 @@ import WeeklyShiftList from "./components/elements/WeeklyShiftList"
 import { Button, Menu, Segment, Sidebar, Dimmer, Loader } from "semantic-ui-react";
 import BasicButton from "./components/buttons/Button";
 import Modal from "./components/modal/Modal";
-import ModalCreateUser from "./components/modal/Modal_createUser";
-import ModalChangePassword from "./components/modal/Modal_changePassword";
+import ModalCreateUser from "./components/modal/ModalCreateUser";
+import ModalChangePassword from "./components/modal/ModalChangePassword";
 import ReactToPrint from "react-to-print";
 import Form from "./components/form/Form";
 import log from "loglevel";
