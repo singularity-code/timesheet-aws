@@ -25,7 +25,7 @@ class Timesheet extends React.Component {
     const next_sunday = moment().day(14).format(format);
     this.historyMode = false;
     this.state = {
-      version: '2021.11.001',
+      version: '2022.10.001',
       isDemo: true,
       userInfo: {
         token: '',
