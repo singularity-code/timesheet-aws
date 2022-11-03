@@ -11,7 +11,7 @@
     "faker": "^5.5.3",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "^5.0.1",
     "react-signature-canvas": "^1.0.3",
     "react-to-print": "^2.14.1",
     "semantic-ui-react": "^0.88.2"
